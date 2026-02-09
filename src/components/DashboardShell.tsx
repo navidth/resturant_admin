@@ -27,7 +27,7 @@ function DashboardShell() {
       const statusToColor = (s: StatusTable) => {
             switch (s) {
                   case "EMPTY":
-                        return { bg: "#9E9E9E", border: "#9E9E9E", tag: "success", label: "EMPTY" };
+                        return { bg: "#d4d2d2", border: "#d4d2d2", tag: "success", label: "EMPTY" };
                   case "OCCUPIED":
                         return { bg: "#2ECC71", border: "#2ECC71", tag: "processing", label: "OCCUPIED" };
             }
@@ -45,7 +45,7 @@ function DashboardShell() {
                                     style={{ margin: '16px 0' }}
                   /> */}
                         <Layout>
-                              <Sider width={200} style={{ background: colorBgContainer }}>
+                              <Sider width={350} style={{ background: colorBgContainer }}>
                               </Sider>
 
                               <Layout style={{ padding: '0 24px 24px' }}>
