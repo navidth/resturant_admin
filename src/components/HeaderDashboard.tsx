@@ -17,8 +17,8 @@ const HeaderDashboard: React.FC<PropsHeaderDash> = ({ isGrid, setIsGrid }) => {
 
       const lenghtTable = tableItems.length
       const lengthOcc = Object.values(tableStatus).filter((status) => status === "OCCUPIED").length
+      const totalTable = lenghtTable - lengthOcc
 
-      console.log(lengthOcc)
 
       return (
             <Header style={{ background: colorBgContainer, height: "100px" }} className='mb-4 flex items-center justify-between '>
@@ -47,7 +47,7 @@ const HeaderDashboard: React.FC<PropsHeaderDash> = ({ isGrid, setIsGrid }) => {
                               <Divider style={{ margin: 0, borderColor: "#D9D9D9" }} titlePlacement="center">Tables</Divider>
                               <Flex align='center' gap="middle" style={{ padding: "8px", height: "60px", background: colorBgLayout, borderRadius: borderRadiusLG }} >
                                     <Flex align='center' vertical >
-                                          <Badge showZero color="#9E9E9E" count={lenghtTable} />
+                                          <Badge showZero color="#9E9E9E" count={totalTable} />
                                           <span className='text-xs font-semibold'>Available</span>
                                     </Flex>
                                     <Flex align='center' vertical >

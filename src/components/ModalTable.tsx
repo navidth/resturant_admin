@@ -6,12 +6,30 @@ const ModalTable = () => {
     isModalOpen,
     selectedTable,
     draftSeats,
+    draftArrows,
+    toggleDraftArrow,
     closeModal,
     cycleStatus,
     toggleDraftSeat,
     commitDraft,
   } = useTableStore();
 
+  const getSeatColors = (status: SeatStatus) => {
+    const background =
+      status === "EMPTY"
+        ? "#E6EEF9"
+        : status === "NEW_GUEST"
+          ? "#8E44AD"
+          : status === "OCCUPIED"
+            ? "#2ECC71"
+            : status === "WAITING"
+              ? "#F1C40F"
+              : "#1F6EE0";
+
+    const color = status === "EMPTY" ? "#1f2a44" : "white";
+    return { background, color };
+  };
+  const arrowPosList = ["top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"] as const;
 
   const Seat = ({ seat, idx }: { seat: SeatStatus, idx: number }) => {
     const background = seat === "EMPTY"
@@ -24,9 +42,9 @@ const ModalTable = () => {
             ? "#F1C40F"
             : "#1F6EE0"
     const color = seat === "EMPTY" ? "#1f2a44" : "white"
+
     return (
       <div>
-
         <Tooltip title={`Seat ${idx + 1}: ${seat}`} color={background}  >
           <div
             onClick={() => toggleDraftSeat(idx)}
@@ -91,9 +109,7 @@ const ModalTable = () => {
             const bottomSeats = seats.slice(half);
 
             const handleArrowClick = (pos: string) => {
-              console.log("arrow clicked:", pos, "table:", selectedTable);
-              // اینجا هر کاری خواستی انجام بده
-              // مثلا: cycleStatus(selectedTable!) یا call api یا ...
+              toggleDraftSeat(1)
             };
 
             return (
@@ -109,15 +125,15 @@ const ModalTable = () => {
                   gap: 14,
                 }}
               >
-                {/* فلش‌های دور میز (۸ تا مثل عکس) */}
-                <SideArrow pos="top" onClick={() => handleArrowClick("top")} />
-                <SideArrow pos="bottom" onClick={() => handleArrowClick("bottom")} />
-                <SideArrow pos="left" onClick={() => handleArrowClick("left")} />
-                <SideArrow pos="right" onClick={() => handleArrowClick("right")} />
-                <SideArrow pos="topLeft" onClick={() => handleArrowClick("topLeft")} />
-                <SideArrow pos="topRight" onClick={() => handleArrowClick("topRight")} />
-                <SideArrow pos="bottomLeft" onClick={() => handleArrowClick("bottomLeft")} />
-                <SideArrow pos="bottomRight" onClick={() => handleArrowClick("bottomRight")} />
+
+                {arrowPosList.map((pos, i) => (
+                  <SideArrow
+                    key={pos}
+                    pos={pos}
+                    status={draftArrows[i] ?? "EMPTY"}
+                    onClick={() => toggleDraftArrow(i)}
+                  />
+                ))}
 
                 {/* بالا */}
                 <div style={{ display: "flex", gap: 80, justifyContent: "center" }}>
