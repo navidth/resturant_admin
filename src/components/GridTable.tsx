@@ -36,7 +36,7 @@ const GridTable: React.FC<GridTableProps> = ({ tableStatus, statusToColor, selec
                                                 background: isActive ? "#2ECC71" : styleCard.bg,
                                                 color: isActive ? "white" : styleCard.color,
                                           }}
-                                          className="w-44 h-44 flex flex-col items-center justify-center cursor-pointer"
+                                          className="h-30 flex flex-col items-center justify-center cursor-pointer"
                                     >
                                           <Flex vertical gap={8}>
                                                 <Flex vertical justify="space-between" align="center">

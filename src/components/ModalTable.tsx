@@ -74,6 +74,11 @@ const ModalTable = () => {
 
   return (
     <Modal
+styles={{
+    title: {
+      fontSize: '20px'
+    }
+  }}
       title={selectedTable ? `Table ${selectedTable}` : "Table"}
       open={isModalOpen}
       onCancel={closeModal}
@@ -107,10 +112,6 @@ const ModalTable = () => {
             const half = Math.ceil(seats.length / 2);
             const topSeats = seats.slice(0, half);
             const bottomSeats = seats.slice(half);
-
-            const handleArrowClick = (pos: string) => {
-              toggleDraftSeat(1)
-            };
 
             return (
               <div
@@ -153,11 +154,12 @@ const ModalTable = () => {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontWeight: 900,
+                    fontWeight: 700,
+                    fontSize:20,
                     boxShadow: "0 10px 22px rgba(0,0,0,0.12)",
                   }}
                 >
-                  TABLE {selectedTable}
+                   Table {selectedTable}
                 </div>
 
                 {/* پایین */}

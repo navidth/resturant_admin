@@ -1,5 +1,6 @@
 import { TiArrowSortedDown } from "react-icons/ti";
 import type { SeatStatus } from "../stores/slices/cardSlice";
+import { Tooltip } from "antd";
 
 const statusToFill: Record<SeatStatus, string> = {
       EMPTY: "#bbb",
@@ -40,7 +41,8 @@ const SideArrow = ({
       const fill = statusToFill[status];
 
       return (
-            <TiArrowSortedDown
+           <Tooltip title={status} color={fill} >
+             <TiArrowSortedDown
                   size={100}
                   onClick={onClick}
                   style={{
@@ -53,6 +55,7 @@ const SideArrow = ({
                   onMouseEnter={(e) => (e.currentTarget.style.fill = "#1f2a44")}
                   onMouseLeave={(e) => (e.currentTarget.style.fill = fill)}
             />
+           </Tooltip>
       );
 };
 
