@@ -1,5 +1,8 @@
 import { Badge, Divider, Flex, Switch, theme } from 'antd'
 import { Header } from 'antd/es/layout/layout'
+import { tableItems } from '../lib/constants'
+import { useTableStore } from '../stores/slices/cardSlice'
+import { useEffect, useState } from 'react'
 
 type PropsHeaderDash = {
       isGrid: boolean,
@@ -10,6 +13,13 @@ const HeaderDashboard: React.FC<PropsHeaderDash> = ({ isGrid, setIsGrid }) => {
       const {
             token: { colorBgContainer, borderRadiusLG, colorBgLayout },
       } = theme.useToken();
+      const { tableStatus } = useTableStore();
+
+      const lenghtTable = tableItems.length
+      const lengthOcc = Object.values(tableStatus).filter((status) => status === "OCCUPIED").length
+
+      console.log(lengthOcc)
+
       return (
             <Header style={{ background: colorBgContainer, height: "100px" }} className='mb-4 flex items-center justify-between '>
                   <Flex align='center' gap="middle">
@@ -37,21 +47,17 @@ const HeaderDashboard: React.FC<PropsHeaderDash> = ({ isGrid, setIsGrid }) => {
                               <Divider style={{ margin: 0, borderColor: "#D9D9D9" }} titlePlacement="center">Tables</Divider>
                               <Flex align='center' gap="middle" style={{ padding: "8px", height: "60px", background: colorBgLayout, borderRadius: borderRadiusLG }} >
                                     <Flex align='center' vertical >
-                                          <Badge showZero color="#20b85f" count={12} />
+                                          <Badge showZero color="#9E9E9E" count={lenghtTable} />
                                           <span className='text-xs font-semibold'>Available</span>
                                     </Flex>
                                     <Flex align='center' vertical >
-                                          <Badge showZero color="#9E9E9E" count={0} />
+                                          <Badge showZero color="#20b85f" count={lengthOcc} />
                                           <span className='text-xs font-semibold'>Occupied</span>
                                     </Flex>
-                                    <Flex align='center' vertical >
+                                    {/* <Flex align='center' vertical >
                                           <Badge showZero color="#e3bb1b " content='Dirty' count={3} />
                                           <span className='text-xs font-semibold'>Done Soon</span>
-                                    </Flex>
-                                    <Flex align='center' vertical >
-                                          <Badge showZero color="#1F6EE0" count={12} />
-                                          <span className='text-xs font-semibold'>Reserved</span>
-                                    </Flex>
+                                    </Flex> */}
                               </Flex>
                         </Flex>
                   </Flex>

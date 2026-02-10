@@ -1,4 +1,4 @@
-import { Card, Col, Flex, Grid, Row, Tag } from 'antd';
+import { Card, Col, Flex, Row, Tag } from 'antd';
 import React from 'react'
 import { tableItems, tableSeatCount } from '../lib/constants';
 import { StatusTable } from '../types';
