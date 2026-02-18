@@ -53,7 +53,7 @@ type Robot = {
 const mockRobots = Array.from({ length: 14 }).map((_, i) => ({
       id: `RB-${100 + i}`,
       name: `Robot ${i + 1}`,
-      logoUrl: "",
+      logoUrl: "/images/robot-img.jpeg",
       isOn: i % 4 !== 0,
       error: i % 6 === 0 ? { hasError: true, code: "E-204", text: "Lidar blocked" } : { hasError: false, code: "", text: "OK" },
       battery: Math.max(10, 100 - i * 6),
@@ -128,18 +128,33 @@ function RobotCard({ robot, onTogglePower, onReset }: RobotCardProps) {
       return (
             <Card
                   hoverable
-                  styles={{ body: { padding: 16 } }}
+                  style={{
+                        borderRadius: 22,
+                        border: "1px solid #d9e4f5",
+                        boxShadow: "0 14px 34px rgba(15, 43, 77, 0.12)",
+                        overflow: "hidden",
+                  }}
+                  styles={{
+                        header: {
+                              background: "linear-gradient(135deg, #eef5ff 0%, #f7fbff 100%)",
+                              borderBottom: "1px solid #d9e4f5",
+                              padding: "12px 16px",
+                        },
+                        body: { padding: 18 },
+                  }}
                   title={
-                        <Space>
+                        <Space size={12}>
                               <Avatar
-                                    size={40}
+                                    size={74}
+                                    shape="square"
                                     src={robot.logoUrl || undefined}
                                     icon={!robot.logoUrl ? <RobotOutlined /> : undefined}
+                                    style={{ borderRadius: 18, border: "2px solid #ffffff" }}
                               />
-                              <div style={{ lineHeight: 1.1 }}>
-                                    <Text strong>{robot.name}</Text>
+                              <div style={{ lineHeight: 1.2 }}>
+                                    <Text strong style={{ fontSize: 16 }}>{robot.name}</Text>
                                     <br />
-                                    <Text type="secondary" style={{ fontSize: 12 }}>{robot.id}</Text>
+                                    <Text type="secondary" style={{ fontSize: 13 }}>{robot.id}</Text>
                               </div>
                         </Space>
                   }
@@ -150,7 +165,7 @@ function RobotCard({ robot, onTogglePower, onReset }: RobotCardProps) {
                                     placement="bottomRight"
                                     content={<RobotMorePopover robot={robot} onReset={onReset} />}
                               >
-                                    <Button icon={<MoreOutlined />} />
+                                    <Button shape="circle" icon={<MoreOutlined />} />
                               </Popover>
                         </Space>
                   }

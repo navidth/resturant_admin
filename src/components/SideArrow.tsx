@@ -33,12 +33,12 @@ const SideArrow = ({
                         onClick={onClick}
                         style={{
                               position: "absolute",
-                              cursor: "pointer",
+                              cursor: onClick ? "pointer" : "default",
                               fill,
                               zIndex: 20,
                               ...map[pos],
                         }}
-                        onMouseEnter={(e) => (e.currentTarget.style.fill = "#1f2a44")}
+                        onMouseEnter={(e) => (onClick ? e.currentTarget.style.fill = "#1f2a44" : null)}
                         onMouseLeave={(e) => (e.currentTarget.style.fill = fill)}
                   />
             </Tooltip>
