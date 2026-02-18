@@ -1,11 +1,15 @@
+import Navbar from "@/src/components/Navbar";
+import { Layout } from "antd";
+
 export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <Layout>
+      <Navbar />
       {children}
-    </div>
+    </Layout>
   );
 }

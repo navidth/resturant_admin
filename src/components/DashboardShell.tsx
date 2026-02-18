@@ -1,10 +1,8 @@
 "use client";
-import React from 'react';
 import { Layout, theme } from 'antd';
 import { StatusTable } from '../types';
 import { useTableStore } from '../stores/slices/cardSlice';
 import ModalTable from './ModalTable';
-import Navbar from './Navbar';
 import HeaderDashboard from './HeaderDashboard';
 import GridTable from './GridTable';
 import { useTableOverviewStore } from '../stores/slices/tableOverview';
@@ -38,12 +36,7 @@ function DashboardShell() {
             <>
                   {isModalOpen && <ModalTable />}
                   <Layout>
-                        <Navbar />
                         <HeaderDashboard isGrid={isGrid} setIsGrid={setIsGrid} />
-                        {/* <Breadcrumb
-                                    items={[{ title: 'Home' }, { title: 'List' }, { title: 'App' }]}
-                                    style={{ margin: '16px 0' }}
-                  /> */}
                         <Layout>
                               {/* <Sider width={350} style={{ background: colorBgContainer }}>
                               </Sider> */}

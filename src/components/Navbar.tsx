@@ -1,3 +1,4 @@
+'use client'
 import { Menu, MenuProps } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 import { usePathname } from 'next/navigation';
@@ -28,7 +29,7 @@ const Navbar = () => {
             return best ? [best] : [];
       }, [pathname]);
       return (
-            <Header style={{ display: "flex", justifyContent: "space-between" }}>
+            <Header style={{ display: "flex", justifyContent: "space-between", width:"100%" }}>
                   <div className='text-white'>LOGO</div>
                   <Menu
                         theme="dark"

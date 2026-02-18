@@ -2,11 +2,11 @@ import { MenuItemProps } from "../types";
 
 export const menuItems: MenuItemProps[] = [
       { id: 1, link: "/", label: "Dine In" },
-      { id: 2, link: "/waiters", label: "Waiters" },
+      { id: 2, link: "/robots", label: "Robots" },
       { id: 3, link: "/tasks", label: "Tasks" },
 ];
-export const tableItems = ["A1", "A2", "A3", "A4", "A5", "A6", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "C1", "C2", "C3", "C4", "C5", "C6", "RED1", "RED2", "RED3", "GREEN1", "GREEN2", "D1", "D2", "D3", "D4"]
-export const tableSeatCount: Record<string, number> = { 
+export const tableItems = [{ name: "A1", seat: 4 }, { name: "A2", seat: 4 }, { name: "A3", seat: 4 }, { name: "A4", seat: 4 }, { name: "A5", seat: 4 }, { name: "A6", seat: 4 }, { name: "B1", seat: 4 }, { name: "B2", seat: 4 }, { name: "B3", seat: 4 }, { name: "B4", seat: 4 }, { name: "B5", seat: 4 }, { name: "B6", seat: 4 }, { name: "B7", seat: 4 }, { name: "C1", seat: 4 }, { name: "C2", seat: 4 }, { name: "C3", seat: 4 }, { name: "C4", seat: 4 }, { name: "C5", seat: 4 }, { name: "C6", seat: 4 }, { name: "R1", seat: 4 }, { name: "R2", seat: 4 }, { name: "R3", seat: 4 }, { name: "G1", seat: 4 }, { name: "G2", seat: 4 }, { name: "D1", seat: 4 }, { name: "D2", seat: 4 }, { name: "D3", seat: 4 }, { name: "D4", seat: 4 }]
+export const tableSeatCount: Record<string, number> = {
       A1: 4,
       A2: 4,
       A3: 4,
@@ -26,11 +26,11 @@ export const tableSeatCount: Record<string, number> = {
       C4: 4,
       C5: 4,
       C6: 4,
-      RED1: 2,
-      RED2: 2,
-      RED3: 2,
-      GREEN1: 2,
-      GREEN2: 2,
+      R1: 2,
+      R2: 2,
+      R3: 2,
+      G1: 2,
+      G2: 2,
       D1: 4,
       D2: 4,
       D3: 4,

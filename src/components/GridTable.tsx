@@ -1,4 +1,4 @@
-import { Card, Col, Flex, Row, Tag } from 'antd';
+import { Card, Col, Row } from 'antd';
 import React from 'react'
 import { tableItems, tableSeatCount } from '../lib/constants';
 import { StatusTable } from '../types';
@@ -14,38 +14,35 @@ const GridTable: React.FC<GridTableProps> = ({ tableStatus, statusToColor, selec
       return (
             <Row gutter={[16, 24]}>
                   {tableItems.map((item, i) => {
-                        const status = tableStatus[item] ?? "EMPTY";
+                        const status = tableStatus[i] ?? "EMPTY";
                         const styleCard = statusToColor(status);
-                        const isActive = item === selectedTable;
+                        const isActive = item.name === selectedTable;
 
                         return (
-                              <Col
-                                    key={i}
-                                    xs={12}   // موبایل: 2 تا در هر ردیف
-                                    sm={8}    // تبلت: 3 تا در هر ردیف
-                                    md={6}    // لپتاپ کوچیک: 4 تا در هر ردیف
-                                    lg={4}    // دسکتاپ: دقیقاً 6 تا در هر ردیف ✅
-                                    xl={4}    // بزرگ‌تر هم 6 تا ✅
-                                    xxl={4}   // خیلی بزرگ هم 6 تا ✅
+                              <Col key={i} xs={12}
+                                    sm={8}
+                                    md={6}
+                                    lg={4}
+                                    xl={4}
+                                    xxl={4}
                               >
                                     <Card
                                           hoverable
                                           variant="borderless"
-                                          onClick={() => openTableModal(item, tableSeatCount[item])}
+                                          onClick={() => openTableModal(item.name, tableSeatCount[item.name])}
                                           style={{
                                                 background: isActive ? "#2ECC71" : styleCard.bg,
                                                 color: isActive ? "white" : styleCard.color,
+                                                overflow: "hidden",
                                           }}
-                                          className="h-30 flex flex-col items-center justify-center cursor-pointer"
-                                    >
-                                          <Flex vertical gap={8}>
-                                                <Flex vertical justify="space-between" align="center">
-                                                      <span style={{ fontWeight: 700, fontSize: 26 }}>{item}</span>
-                                                      <Tag variant="outlined" color={styleCard.tag} style={{ margin: 0 }}>
-                                                            {styleCard.label}
-                                                      </Tag>
-                                                </Flex>
-                                          </Flex>
+                                          styles={{ body: { padding: 0, height: "100%" } }}
+                                          className="h-30 cursor-pointer">
+                                          <Row style={{ width: "100%", height: "100%", margin: 0 }}>
+                                                <Col className={``} span={12} style={{ minHeight: "50%" }} />
+                                                <Col className={``} span={12} style={{ minHeight: "50%" }} />
+                                                <Col className={``} span={12} style={{ minHeight: "50%" }} />
+                                                <Col className={``} span={12} style={{ minHeight: "50%" }} />
+                                          </Row>
                                     </Card>
                               </Col>
                         );

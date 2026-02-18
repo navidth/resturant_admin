@@ -1,4 +1,4 @@
-import { Alert, Button, Modal, Tooltip } from "antd";
+import { Button, Modal, Tooltip } from "antd";
 import { SeatStatus, useTableStore } from "../stores/slices/cardSlice";
 import SideArrow from "./SideArrow";
 const ModalTable = () => {
@@ -14,22 +14,7 @@ const ModalTable = () => {
     commitDraft,
   } = useTableStore();
 
-  const getSeatColors = (status: SeatStatus) => {
-    const background =
-      status === "EMPTY"
-        ? "#E6EEF9"
-        : status === "NEW_GUEST"
-          ? "#8E44AD"
-          : status === "OCCUPIED"
-            ? "#2ECC71"
-            : status === "WAITING"
-              ? "#F1C40F"
-              : "#1F6EE0";
-
-    const color = status === "EMPTY" ? "#1f2a44" : "white";
-    return { background, color };
-  };
-  const arrowPosList = ["top", "bottom", "left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"] as const;
+  const arrowPosList = ["left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"] as const;
 
   const Seat = ({ seat, idx }: { seat: SeatStatus, idx: number }) => {
     const background = seat === "EMPTY"
@@ -74,26 +59,28 @@ const ModalTable = () => {
 
   return (
     <Modal
-styles={{
-    title: {
-      fontSize: '20px'
-    }
-  }}
-      title={selectedTable ? `Table ${selectedTable}` : "Table"}
+      styles={{
+        title: {
+          fontSize: '20px'
+        },
+        footer: {
+          display: "flex"
+        }
+      }}
       open={isModalOpen}
       onCancel={closeModal}
       footer={[
         <Button key="cancel"
           danger
           type="primary"
-          style={{ width: "100px", height: "50px", fontSize: "18px" }}
+          style={{ width: "50%", height: "50px", fontSize: "18px" }}
           onClick={closeModal}>
           Cancel
         </Button>,
         <Button
           key="ok"
           type="primary"
-          style={{ width: "100px", height: "50px", fontSize: "18px" }}
+          style={{ width: "50%", height: "50px", fontSize: "18px" }}
           onClick={() => {
             if (!selectedTable) return;
             commitDraft();
@@ -101,7 +88,7 @@ styles={{
             closeModal();
           }}
         >
-          Save
+          Ok
         </Button>,
       ]}
     >
@@ -155,11 +142,11 @@ styles={{
                     alignItems: "center",
                     justifyContent: "center",
                     fontWeight: 700,
-                    fontSize:20,
+                    fontSize: 20,
                     boxShadow: "0 10px 22px rgba(0,0,0,0.12)",
                   }}
                 >
-                   Table {selectedTable}
+                  Table {selectedTable}
                 </div>
 
                 {/* پایین */}
@@ -171,13 +158,13 @@ styles={{
               </div>
             )
           })()}
-          <Alert
+          {/* <Alert
             title="Click seats to change"
             style={{ marginTop: "15px" }}
             description="EMPTY → NEW_GUEST → OCCUPIED → WAITING → DELIVER"
             type="info"
             showIcon
-          />
+          /> */}
 
         </>
       )}

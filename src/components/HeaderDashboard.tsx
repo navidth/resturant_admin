@@ -30,15 +30,15 @@ const HeaderDashboard: React.FC<PropsHeaderDash> = ({ isGrid, setIsGrid }) => {
 
                   <Flex align='stretch' gap="large">
                         <Flex vertical>
-                              <Divider style={{ margin: 0, borderColor: "#D9D9D9" }} titlePlacement="center">Waiters</Divider>
+                              <Divider style={{ margin: 0, borderColor: "#D9D9D9" }} titlePlacement="center">Robots</Divider>
 
                               <Flex align='center' gap="large" style={{ padding: "8px", height: "60px", background: colorBgLayout, borderRadius: borderRadiusLG }} >
                                     <Flex align='center' vertical >
-                                          <span className='text-sm font-semibold'>Waiter1</span>
+                                          <span className='text-sm font-semibold'>Robots1</span>
                                           <Badge showZero color="#20b85f" count={"Active"} />
                                     </Flex>
                                     <Flex align='center' vertical >
-                                          <span className='text-sm font-semibold'>Waiter2</span>
+                                          <span className='text-sm font-semibold'>Robots2</span>
                                           <Badge showZero color="#1F6EE0" count={"Busy"} />
                                     </Flex>
                               </Flex>
