@@ -1,6 +1,7 @@
 import { Button, Modal, Tooltip } from "antd";
-import { SeatStatus, useTableStore } from "../stores/slices/cardSlice";
+import { ArrowPos, SeatStatus, useTableStore } from "../stores/slices/cardSlice";
 import SideArrow from "./SideArrow";
+import { arrowPosList, tableItems } from "../lib/constants";
 const ModalTable = () => {
   const {
     isModalOpen,
@@ -9,12 +10,10 @@ const ModalTable = () => {
     draftArrows,
     toggleDraftArrow,
     closeModal,
-    cycleStatus,
     toggleDraftSeat,
-    commitDraft,
+    commitDraft
   } = useTableStore();
 
-  const arrowPosList = ["left", "right", "topLeft", "topRight", "bottomLeft", "bottomRight"] as const;
 
   const Seat = ({ seat, idx }: { seat: SeatStatus, idx: number }) => {
     const background = seat === "EMPTY"
@@ -56,6 +55,21 @@ const ModalTable = () => {
       </div>
     )
   };
+  const map: Record<string, React.CSSProperties> = {
+    top: { top: 5, left: "50%", transform: "translateX(-50%) rotate(0deg)" },
+    bottom: { bottom: 5, left: "50%", transform: "translateX(-50%) rotate(180deg)" },
+    left: { left: -10, top: "50%", transform: "translateY(-50%) rotate(-90deg)" },
+    right: { right: -10, top: "50%", transform: "translateY(-50%) rotate(90deg)" },
+    topLeft: { top: 45, left: 5, transform: "rotate(320deg)" },
+    topRight: { top: 45, right: 5, transform: "rotate(50deg)" },
+    bottomLeft: { bottom: 45, left: 5, transform: "rotate(220deg)" },
+    bottomRight: { bottom: 45, right: 5, transform: "rotate(140deg)" },
+  };
+
+  const fourSeatTable = tableItems.find((item) => item.name === selectedTable)?.seat === 4;
+  const arrowsToRender: ArrowPos[] = fourSeatTable
+    ? ["top", "bottom", ...arrowPosList]
+    : [...arrowPosList];
 
   return (
     <Modal
@@ -84,7 +98,6 @@ const ModalTable = () => {
           onClick={() => {
             if (!selectedTable) return;
             commitDraft();
-            cycleStatus(selectedTable);
             closeModal();
           }}
         >
@@ -114,8 +127,10 @@ const ModalTable = () => {
                 }}
               >
 
-                {arrowPosList.map((pos, i) => (
+                {arrowsToRender.map((pos, i) => (
                   <SideArrow
+                    map={map}
+                    size={100}
                     key={pos}
                     pos={pos}
                     status={draftArrows[i] ?? "EMPTY"}

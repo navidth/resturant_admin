@@ -18,6 +18,9 @@ function DashboardShell() {
             isModalOpen,
             selectedTable,
             tableStatus,
+            seatsByTable,
+            arrowsByTable,
+            draftArrows,
             openTableModal,
       } = useTableStore();
       const { isGrid, setIsGrid } = useTableOverviewStore()
@@ -50,7 +53,15 @@ function DashboardShell() {
                                           borderRadius: borderRadiusLG,
                                     }}>
                                           {isGrid ? (
-                                                <GridTable tableStatus={tableStatus} statusToColor={statusToColor} selectedTable={selectedTable} openTableModal={openTableModal} />
+                                                <GridTable
+                                                      tableStatus={tableStatus}
+                                                      seatsByTable={seatsByTable}
+                                                      statusToColor={statusToColor}
+                                                      selectedTable={selectedTable}
+                                                      openTableModal={openTableModal}
+                                                      arrowsByTable={arrowsByTable}
+                                                      draftArrows={draftArrows}
+                                                />
                                           ) : null}
                                     </Content>
                               </Layout>

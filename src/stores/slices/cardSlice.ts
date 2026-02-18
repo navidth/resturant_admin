@@ -141,7 +141,7 @@ export const useTableStore = create<TableStore>((set, get) => ({
     }),
 
   commitDraft: () => {
-    const { selectedTable, draftSeats, draftArrows, seatsByTable, arrowsByTable } = get();
+    const { selectedTable, draftSeats, draftArrows, seatsByTable, arrowsByTable, tableStatus } = get();
     if (!selectedTable) return;
 
     set({
@@ -154,6 +154,7 @@ export const useTableStore = create<TableStore>((set, get) => ({
         [selectedTable]: [...draftArrows],
       },
     });
+    console.log("first", selectedTable, tableStatus, seatsByTable, draftSeats, arrowsByTable, draftArrows)
   },
 
 }));
