@@ -4,6 +4,7 @@ export const menuItems: MenuItemProps[] = [
       { id: 1, link: "/", label: "Dine In" },
       { id: 2, link: "/robots", label: "Robots" },
       { id: 3, link: "/tasks", label: "Tasks" },
+      { id: 4, link: "/poi", label: "POI" },
 ];
 export const tableItems = [{ name: "A1", seat: 4 }, { name: "A2", seat: 4 }, { name: "A3", seat: 4 }, { name: "A4", seat: 4 }, { name: "A5", seat: 4 }, { name: "A6", seat: 4 }, { name: "B1", seat: 4 }, { name: "B2", seat: 4 }, { name: "B3", seat: 4 }, { name: "B4", seat: 4 }, { name: "B5", seat: 4 }, { name: "B6", seat: 4 }, { name: "B7", seat: 4 }, { name: "C1", seat: 4 }, { name: "C2", seat: 4 }, { name: "C3", seat: 4 }, { name: "C4", seat: 4 }, { name: "C5", seat: 4 }, { name: "C6", seat: 4 }, { name: "R1", seat: 2 }, { name: "R2", seat: 2 }, { name: "R3", seat: 2 }, { name: "G1", seat: 2 }, { name: "G2", seat: 2 }, { name: "D1", seat: 4 }, { name: "D2", seat: 4 }, { name: "D3", seat: 4 }, { name: "D4", seat: 4 }];
 export const tableSeatCount: Record<string, number> = {

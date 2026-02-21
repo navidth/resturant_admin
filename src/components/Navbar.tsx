@@ -29,15 +29,15 @@ const Navbar = () => {
             return best ? [best] : [];
       }, [pathname]);
       return (
-            <Header style={{ display: "flex", justifyContent: "space-between", width:"100%" }}>
+            <Header style={{ display: "flex", justifyContent: "space-between", gap: 16, width: "100%" }}>
                   <div className='text-white'>LOGO</div>
                   <Menu
                         theme="dark"
                         mode="horizontal"
+                        disabledOverflow
                         selectedKeys={selectedKeys}
                         items={itemsMenu}
-                        className=''
-
+                        style={{minWidth: 0 }}
                   />
                   <div></div>
             </Header>
