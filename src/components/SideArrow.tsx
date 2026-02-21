@@ -15,17 +15,20 @@ const SideArrow = ({
       status,
       onClick,
       map,
-      size
+      size,
+      hideWhenEmpty = false,
 }: {
       pos: "top" | "bottom" | "left" | "right" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight";
       status: SeatStatus;
       onClick?: () => void;
       map: Record<string, React.CSSProperties>,
-      size: number
+      size: number;
+      hideWhenEmpty?: boolean;
 }) => {
 
 
       const fill = statusToFill[status];
+      if (hideWhenEmpty && status === "EMPTY") return null;
       return (
             <Tooltip title={status} color={fill} >
                   <TiArrowSortedDown

@@ -86,7 +86,14 @@ const GridTable: React.FC<GridTableProps> = ({
                                                 {item.name}
                                           </p>
                                           {arrowsToRender.map((arrow, i) => (
-                                                <SideArrow size={42} key={i} map={map} pos={arrow} status={currentArrows[i] ?? "EMPTY"} />
+                                                <SideArrow
+                                                      size={42}
+                                                      key={i}
+                                                      map={map}
+                                                      pos={arrow}
+                                                      status={currentArrows[i] ?? "EMPTY"}
+                                                      hideWhenEmpty
+                                                />
                                           ))}
                                           <Row style={{ width: "100%", height: "100%", margin: 0 }}>
                                                 {[...Array(item.seat)].map((_, seatIndex) => {
