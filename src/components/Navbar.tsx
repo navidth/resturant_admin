@@ -1,5 +1,5 @@
 'use client'
-import { Menu, MenuProps } from 'antd'
+import { Button, Menu, MenuProps, theme } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 import { usePathname } from 'next/navigation';
 import { useMemo } from 'react'
@@ -15,6 +15,7 @@ const itemsMenu = menuItems.map((key) =>
 
 const Navbar = () => {
       const pathname = usePathname();
+      console.log(menuItems)
 
       const selectedKeys = useMemo(() => {
             const normalizedPath = (pathname || "/").trim();
@@ -28,17 +29,34 @@ const Navbar = () => {
 
             return best ? [best] : [];
       }, [pathname]);
+      const {
+            token: { colorBgContainer, borderRadiusLG, colorBgLayout, colorBorder,colorInfoBorderHover },
+      } = theme.useToken();
       return (
             <Header style={{ display: "flex", justifyContent: "space-between", gap: 16, width: "100%" }}>
                   <div className='text-white'>LOGO</div>
-                  <Menu
+                  {/* <Menu
                         theme="dark"
                         mode="horizontal"
                         disabledOverflow
                         selectedKeys={selectedKeys}
                         items={itemsMenu}
-                        style={{minWidth: 0 }}
-                  />
+                        style={{ minWidth: 0, fontSize: 16, display: "flex", alignItems: "center", padding:"20px", gap:"8px" }}
+                        styles={{
+                              item: {
+                                    padding:0,
+                                    borderRadius: borderRadiusLG,
+                                    border:`1px solid ${colorInfoBorder}`
+                              }
+                        }}
+                  /> */}
+                  <div className='flex items-center gap-3'>
+                        {menuItems.map((item) => (
+                              <Button key={item.id} variant='outlined' className={`bg-inherit! hover:border-cyan-500! hover:text-cyan-500!  `} style={{color:colorBorder, borderColor:colorBorder }}  size="large">
+                                    {item.label}
+                              </Button>
+                        ))}
+                  </div>
                   <div></div>
             </Header>
       )

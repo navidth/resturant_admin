@@ -1,7 +1,7 @@
 import { MenuItemProps } from "../types";
 
 export const menuItems: MenuItemProps[] = [
-      { id: 1, link: "/", label: "Dine In" },
+      { id: 1, link: "/", label: "Home" },
       { id: 2, link: "/robots", label: "Robots" },
       { id: 3, link: "/tasks", label: "Tasks" },
       { id: 4, link: "/poi", label: "POI" },
