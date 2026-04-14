@@ -3,11 +3,11 @@ import type { SeatStatus } from "../stores/slices/cardSlice";
 import { Tooltip } from "antd";
 
 const statusToFill: Record<SeatStatus, string> = {
-      EMPTY: "#bbb",
-      NEW_GUEST: "#64327a",
-      OCCUPIED: "#25a95c",
-      WAITING: "#ac8c0d",
-      DELIVER: "#2461b6",
+      "Empty": "#bbb",
+      "Get Order": "#64327a",
+      "Delivery Food": "#1b7f45",
+      "Deliver Bill": "#ac8c0d",
+      "Collect Dishes": "#2461b6",
 };
 
 const SideArrow = ({
@@ -26,7 +26,7 @@ const SideArrow = ({
       hideWhenEmpty?: boolean;
 }) => {
 
-
+      console.log(status)
       const fill = statusToFill[status];
       if (hideWhenEmpty && status === "EMPTY") return null;
       return (

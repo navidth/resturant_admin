@@ -1,8 +1,7 @@
-import { Badge, Divider, Flex, Switch, theme } from 'antd'
+import { Alert, Badge, Divider, Flex, Switch, theme } from 'antd'
 import { Header } from 'antd/es/layout/layout'
 import { tableItems } from '../lib/constants'
 import { useTableStore } from '../stores/slices/cardSlice'
-import { useEffect, useState } from 'react'
 
 type PropsHeaderDash = {
       isGrid: boolean,
@@ -15,50 +14,51 @@ const HeaderDashboard: React.FC<PropsHeaderDash> = ({ isGrid, setIsGrid }) => {
       } = theme.useToken();
       const { tableStatus } = useTableStore();
 
-      const lenghtTable = tableItems.length
-      const lengthOcc = Object.values(tableStatus).filter((status) => status === "OCCUPIED").length
-      const totalTable = lenghtTable - lengthOcc
+
 
 
       return (
-            <Header style={{ background: colorBgContainer, height: "100px" }} className='mb-4 flex items-center justify-between '>
-                  <Flex align='center' gap="middle">
-                        <h1 className='text-3xl'>Table Overview</h1>
-                        <Switch checked={isGrid}
-                              onChange={(checked) => setIsGrid(checked)} style={{ background: isGrid ? "#2ECC71" : "#9B59B6" }} checkedChildren="Grid" unCheckedChildren="Floor" />
-                  </Flex>
-
-                  <Flex align='stretch' gap="large">
-                        <Flex vertical>
-                              <Divider style={{ margin: 0, borderColor: "#D9D9D9" }} titlePlacement="center">Robots</Divider>
-
-                              <Flex align='center' gap="large" style={{ padding: "8px", height: "60px", background: colorBgLayout, borderRadius: borderRadiusLG }} >
-                                    <Flex align='center' vertical >
-                                          <span className='text-sm font-semibold'>Robots1</span>
-                                          <Badge showZero color="#20b85f" count={"Active"} />
-                                    </Flex>
-                                    <Flex align='center' vertical >
-                                          <span className='text-sm font-semibold'>Robots2</span>
-                                          <Badge showZero color="#1F6EE0" count={"Busy"} />
-                                    </Flex>
-                              </Flex>
+            <Header style={{ background: colorBgContainer, minHeight: "100px" }} className='flex items-center justify-between  px-3! '>
+                  {/* header name section */}
+                  <Flex vertical align='flex-start' justify='center' >
+                        <Flex align='baseline' gap="middle" >
+                              <h1 className='text-2xl! mb-0!'>Robot Management System</h1>
+                              <Switch checked={isGrid}
+                                    onChange={(checked) => setIsGrid(checked)} style={{ background: isGrid ? "#2ECC71" : "#9B59B6" }} checkedChildren="Grid" unCheckedChildren="Floor" />
                         </Flex>
-                        <Flex vertical  >
-                              <Divider style={{ margin: 0, borderColor: "#D9D9D9" }} titlePlacement="center">Tables</Divider>
-                              <Flex align='center' gap="middle" style={{ padding: "8px", height: "60px", background: colorBgLayout, borderRadius: borderRadiusLG }} >
-                                    <Flex align='center' vertical >
-                                          <Badge showZero color="#9E9E9E" count={totalTable} />
-                                          <span className='text-xs font-semibold'>Available</span>
+                        <p className='mb-0! leading-5! '>
+                              Tom Yum Tai Resturant-Dubai Outlet Mall
+                        </p>
+                  </Flex>
+                  {/* status robots */}
+                  <Flex align='stretch' gap="large">
+
+                        <Flex align='center' gap="middle" style={{ padding: "8px", height: "60px", borderRadius: borderRadiusLG }} >
+                              {/* STATUS ROBOTS */}
+                              <Flex vertical>
+                                    <Divider style={{ margin: 0, borderColor: "#D9D9D9" }} titlePlacement="center">Robots</Divider>
+                                    <Flex align='center' gap="middle" style={{ padding: "8px", height: "60px", borderRadius: borderRadiusLG }} >
+                                          <Flex align='center' className='bg-[#f5f5f5] py-4! px-4! min-h-[52px]! rounded-lg '  >
+                                                <div className='w-2 h-2 bg-black/50 rounded-full relative -left-2'></div>
+                                                <span className='text-sm font-semibold'>MR-01: </span>
+                                                <span className='text-sm font-semibold'>1343/ Deliver Order</span>
+                                          </Flex>
+                                          <Flex align='center' className='bg-[#f5f5f5] py-4! px-6! rounded-lg '  >
+                                                <div className='w-2 h-2 bg-black/50 rounded-full relative -left-2'></div>
+                                                <span className='text-sm font-semibold'>MR-01: </span>
+                                                <span className='text-sm font-semibold'>1343/ Deliver Order</span>
+                                          </Flex>
                                     </Flex>
-                                    <Flex align='center' vertical >
-                                          <Badge showZero color="#20b85f" count={lengthOcc} />
-                                          <span className='text-xs font-semibold'>Occupied</span>
-                                    </Flex>
-                                    {/* <Flex align='center' vertical >
-                                          <Badge showZero color="#e3bb1b " content='Dirty' count={3} />
-                                          <span className='text-xs font-semibold'>Done Soon</span>
-                                    </Flex> */}
                               </Flex>
+                              {/* ERROR ROBOTS */}
+                              <Flex vertical>
+                                    <Divider style={{ margin: 0, borderColor: "#D9D9D9" }} titlePlacement="center">Errors</Divider>
+                                    <Flex align='center' gap="large" style={{ padding: "8px", height: "60px", borderRadius: borderRadiusLG }} >
+                                          <Alert type="error" className='max-w-87.5 rounded-lg! min-w-50 min-h-[52px]!' title="MR-01:ERROR:API requast error" banner />
+                                    </Flex>
+                              </Flex>
+
+
                         </Flex>
                   </Flex>
             </Header>

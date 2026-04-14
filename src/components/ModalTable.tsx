@@ -16,21 +16,22 @@ const ModalTable = () => {
 
 
   const Seat = ({ seat, idx }: { seat: SeatStatus, idx: number }) => {
-    const background = seat === "EMPTY"
+    const background = seat === "Empty"
       ? "#E6EEF9"
-      : seat === "NEW_GUEST"
+      : seat === "Get Order"
         ? "#8E44AD"
-        : seat === "OCCUPIED"
-          ? "#2ECC71"
-          : seat === "WAITING"
-            ? "#F1C40F"
+        : seat === "Delivery Food"
+          ? "oklch(70.5% 0.213 47.604)"
+          : seat === "Deliver Bill"
+            ? "oklch(72.3% 0.219 149.579)"
             : "#1F6EE0"
-    const color = seat === "EMPTY" ? "#1f2a44" : "white"
+    const color = seat === "Empty" ? "#1f2a44" : "white"
 
     return (
       <div>
-        <Tooltip title={`Seat ${idx + 1}: ${seat}`} color={background}  >
+        <Tooltip title={`${seat}`} color={background}  >
           <div
+          className="text-green-500"
             onClick={() => toggleDraftSeat(idx)}
             style={{
               width: 72,
@@ -78,30 +79,24 @@ const ModalTable = () => {
           fontSize: '20px'
         },
         footer: {
-          display: "flex"
+          display: "flex",
+          justifyContent:"center"
         }
       }}
       open={isModalOpen}
       onCancel={closeModal}
       footer={[
-        <Button key="cancel"
-          danger
-          type="primary"
-          style={{ width: "50%", height: "50px", fontSize: "18px" }}
-          onClick={closeModal}>
-          Cancel
-        </Button>,
         <Button
           key="ok"
           type="primary"
-          style={{ width: "50%", height: "50px", fontSize: "18px" }}
+          style={{ width: "90%", height: "50px", fontSize: "18px" }}
           onClick={() => {
             if (!selectedTable) return;
             commitDraft();
             closeModal();
           }}
         >
-          Ok
+          OK
         </Button>,
       ]}
     >

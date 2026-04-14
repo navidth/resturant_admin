@@ -17,15 +17,15 @@ export type GridTableProps = {
 
 const seatStatusToColor = (seatStatus: SeatStatus) => {
       switch (seatStatus) {
-            case "NEW_GUEST":
+            case "Get Order":
                   return "#ae55d5";
-            case "OCCUPIED":
+            case "Deliver Bill":
                   return "#4be58c";
-            case "WAITING":
-                  return "#efcc3f";
-            case "DELIVER":
+            case "Delivery Food":
+                  return "oklch(70.5% 0.213 47.604)";
+            case "Collect Dishes":
                   return "#4c8ae1";
-            case "EMPTY":
+            case "Empty":
             default:
                   return "transparent";
       }

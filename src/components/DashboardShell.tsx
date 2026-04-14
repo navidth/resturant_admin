@@ -6,7 +6,10 @@ import ModalTable from './ModalTable';
 import HeaderDashboard from './HeaderDashboard';
 import GridTable from './GridTable';
 import { useTableOverviewStore } from '../stores/slices/tableOverview';
-
+import { useEffect } from 'react';
+import apiCall from "@/src/lib/services/axiosInstance";
+import axios from 'axios';
+import QueueList from './QueueList';
 const { Content, Sider } = Layout;
 
 function DashboardShell() {
@@ -34,12 +37,33 @@ function DashboardShell() {
             }
       };
 
+      // useEffect(() => {
+      //       const apiCalls = async () => {
+      //             try {
+      //                   const res = await axios.get(
+      //                         `${process.env.NEXT_PUBLIC_API_URL}/dashboard/overview`,
+      //                         {
+      //                               headers: {
+      //                                     "x-api-key": process.env.NEXT_PUBLIC_API_KEY!,
+      //                               }
+      //                         });
+
+      //                   return Response.json(res.data);
+      //             } catch (error: any) {
+      //                   return new Response(JSON.stringify(error.response?.data), {
+      //                         status: error.response?.status || 500,
+      //                   });
+      //             }
+      //       }
+      //       apiCalls()
+      // }, [])
 
       return (
             <>
                   {isModalOpen && <ModalTable />}
                   <Layout>
                         <HeaderDashboard isGrid={isGrid} setIsGrid={setIsGrid} />
+                        <QueueList />
                         <Layout>
                               {/* <Sider width={350} style={{ background: colorBgContainer }}>
                               </Sider> */}

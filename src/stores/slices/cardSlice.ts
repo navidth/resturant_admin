@@ -1,7 +1,7 @@
 import { StatusTable } from "@/src/types";
 import { create } from "zustand";
 
-export type SeatStatus = "EMPTY" | "NEW_GUEST" | "OCCUPIED" | "WAITING" | "DELIVER";
+export type SeatStatus = "Empty" | "Get Order" | "Delivery Food" | "Deliver Bill" | "Collect Dishes";
 export type ArrowPos =
   | "top"
   | "bottom"
@@ -53,7 +53,7 @@ const nxtStatus = (current: StatusTable) => {
 };
 
 // برای تغییر وضعیت صندلی با کلیک (ساده و قابل توسعه)
-const seatOrder: SeatStatus[] = ["EMPTY", "NEW_GUEST", "OCCUPIED", "WAITING", "DELIVER"];
+const seatOrder: SeatStatus[] = ["Empty", "Get Order", "Delivery Food", "Deliver Bill", "Collect Dishes"];
 const nextSeat = (current: SeatStatus) => {
   const idx = seatOrder.indexOf(current);
   const nextIdx = (idx + 1) % seatOrder.length;
@@ -75,14 +75,14 @@ export const useTableStore = create<TableStore>((set, get) => ({
     const initialSeats =
       existingSeats && existingSeats.length === seatCount
         ? existingSeats
-        : Array.from({ length: seatCount }, () => "EMPTY" as const);
+        : Array.from({ length: seatCount }, () => "Empty" as const);
     const arrowCount = 8;
     const existingArrows = get().arrowsByTable[tableName];
 
     const initialArrows =
       existingArrows && existingArrows.length === arrowCount
         ? existingArrows
-        : Array.from({ length: arrowCount }, () => "EMPTY" as const);
+        : Array.from({ length: arrowCount }, () => "Empty" as const);
 
     set({
       isModalOpen: true,
@@ -128,14 +128,14 @@ export const useTableStore = create<TableStore>((set, get) => ({
   toggleDraftSeat: (seatIndex) =>
     set((state) => {
       const copy = [...state.draftSeats];
-      const current = copy[seatIndex] ?? "EMPTY";
+      const current = copy[seatIndex] ?? "Empty";
       copy[seatIndex] = nextSeat(current); // ✅ فقط همون index تغییر می‌کند
       return { draftSeats: copy };
     }),
   toggleDraftArrow: (arrowIndex) =>
     set((state) => {
       const copy = [...state.draftArrows];
-      const current = copy[arrowIndex] ?? "EMPTY";
+      const current = copy[arrowIndex] ?? "Empty";
       copy[arrowIndex] = nextSeat(current);
       return { draftArrows: copy };
     }),

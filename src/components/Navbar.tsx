@@ -5,17 +5,11 @@ import { usePathname } from 'next/navigation';
 import { useMemo } from 'react'
 import { menuItems } from '../lib/constants';
 import Link from 'next/link';
-
-const itemsMenu = menuItems.map((key) =>
-      key.link && typeof key.link == "string" && ({
-            key: key.link,
-            label: <Link href={key.link}>{key.label}</Link>,
-      })
-).filter(Boolean) as MenuProps["items"];
+import Image from 'next/image';
+import logo from "@/public/images/logo_UAE_final.png"
 
 const Navbar = () => {
       const pathname = usePathname();
-      console.log(menuItems)
 
       const selectedKeys = useMemo(() => {
             const normalizedPath = (pathname || "/").trim();
@@ -24,17 +18,17 @@ const Navbar = () => {
                   .map((i) => (i.link ?? "").trim())
                   .filter(Boolean)
                   .filter((link) => link === "/" ? normalizedPath === "/" : (normalizedPath === link || normalizedPath.startsWith(link + "/")));
-
             const best = candidates.sort((a, b) => b.length - a.length)[0];
-
             return best ? [best] : [];
       }, [pathname]);
       const {
-            token: { colorBgContainer, borderRadiusLG, colorBgLayout, colorBorder,colorInfoBorderHover },
+            token: { colorBorder },
       } = theme.useToken();
       return (
             <Header style={{ display: "flex", justifyContent: "space-between", gap: 16, width: "100%" }}>
-                  <div className='text-white'>LOGO</div>
+                  <Link href={`/info`} className='text-white! flex items-center justify-center'>
+                        <Image src={logo} className='w-13.75' alt='logo hyracn company' />
+                  </Link>
                   {/* <Menu
                         theme="dark"
                         mode="horizontal"
@@ -52,7 +46,7 @@ const Navbar = () => {
                   /> */}
                   <div className='flex items-center gap-3'>
                         {menuItems.map((item) => (
-                              <Button key={item.id} variant='outlined' className={`bg-inherit! hover:border-cyan-500! hover:text-cyan-500!  `} style={{color:colorBorder, borderColor:colorBorder }}  size="large">
+                              <Button href={item.link} key={item.id} variant='outlined' className={` w-20 min-w-16 ${item.link && selectedKeys.includes(item.link) ? `hover:text-inherit!  ` : `bg-inherit! text-white! hover:border-cyan-500! hover:text-cyan-500!`}   `} style={{ borderColor: colorBorder }} size="large">
                                     {item.label}
                               </Button>
                         ))}
